@@ -35,9 +35,10 @@ import time
 
 from future import utils
 
-from . import (BackoffSettings, BundleOptions, bundling, _CallSettings, config,
-               errors, PageIterator, ResourceIterator, RetryOptions)
-from .errors import RetryError
+from google.gax import (BackoffSettings, BundleOptions, bundling, _CallSettings,
+                        config, errors, PageIterator, ResourceIterator,
+                        RetryOptions)
+from google.gax.errors import RetryError
 
 _MILLIS_PER_SECOND = 1000
 
