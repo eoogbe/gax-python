@@ -21,7 +21,6 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_pb=_b('\n\x16\x66ixtures/fixture.proto\x12\x0fgoogle.protobuf\"(\n\x06Simple\x12\x0e\n\x06\x66ield1\x18\x01 \x01(\t\x12\x0e\n\x06\x66ield2\x18\x02 \x01(\t\"?\n\x05Outer\x12&\n\x05inner\x18\x01 \x01(\x0b\x32\x17.google.protobuf.Simple\x12\x0e\n\x06\x66ield1\x18\x02 \x01(\t\"\x19\n\x07\x42undled\x12\x0e\n\x06\x66ield1\x18\x01 \x03(\tb\x06proto3')
 )
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -136,6 +135,7 @@ _OUTER.fields_by_name['inner'].message_type = _SIMPLE
 DESCRIPTOR.message_types_by_name['Simple'] = _SIMPLE
 DESCRIPTOR.message_types_by_name['Outer'] = _OUTER
 DESCRIPTOR.message_types_by_name['Bundled'] = _BUNDLED
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Simple = _reflection.GeneratedProtocolMessageType('Simple', (_message.Message,), dict(
   DESCRIPTOR = _SIMPLE,

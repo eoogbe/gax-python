@@ -404,7 +404,7 @@ def _merge_options_metadata(options, settings):
         **merged_kwargs)
 
 
-def create_api_call(func, settings):
+def create_api_call(func, settings, metadata_overlay=None):
     """Converts an rpc call into an API call governed by the settings.
 
     In typical usage, ``func`` will be a callable used to make an rpc request.
@@ -423,6 +423,7 @@ def create_api_call(func, settings):
       func (Callable[Sequence[object], object]): is used to make a bare rpc
         call.
       settings (_CallSettings): provides the settings for this call
+      metadata_overlay (Callable[object, object]): builds the metadata overlay
 
     Returns:
       Callable[Sequence[object], object]: a bound method on a request stub used
@@ -441,6 +442,13 @@ def create_api_call(func, settings):
         """Invoke with the actual settings."""
         this_options = _merge_options_metadata(options, settings)
         this_settings = settings.merge(this_options)
+
+        if metadata_overlay is not None:
+            overlay_options = gax.CallOptions(
+                metadata=metadata_overlay(request))
+            overlay_options = _merge_options_metadata(
+                overlay_options, this_settings)
+            this_settings = this_settings.merge(overlay_options)
 
         if this_settings.retry and this_settings.retry.retry_codes:
             api_call = gax.retry.retryable(
